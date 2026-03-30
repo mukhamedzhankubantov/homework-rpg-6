@@ -16,5 +16,10 @@ public class BlockHandler extends DefenseHandler {
         // TODO: Print a block message showing how much was blocked.
         // TODO: Always pass the remainder to the next handler (block reduces but never stops the chain).
         // Design question: what should happen if the remainder reaches 0 or below?
+        int blocked =(int) (incomingDamage * blockPercent);
+        int remainingDamage = incomingDamage - blocked;
+
+        System.out.println("[Block] Blocked " + blocked + "damage");
+        passToNext(remainingDamage,target);
     }
 }

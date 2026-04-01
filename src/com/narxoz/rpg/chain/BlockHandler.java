@@ -19,7 +19,7 @@ public class BlockHandler extends DefenseHandler {
         int blocked =(int) (incomingDamage * blockPercent);
         int remainingDamage = incomingDamage - blocked;
 
-        System.out.println("[Block] Blocked " + blocked + "damage");
+        System.out.println("[Block] Blocked " + blocked + " damage");
         passToNext(remainingDamage,target);
     }
 }

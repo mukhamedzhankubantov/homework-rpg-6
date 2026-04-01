@@ -42,13 +42,6 @@ public class TournamentEngine {
         //   new ArmorHandler(hero.getArmorValue())
         //   new HpHandler()
         // Chain them: dodge.setNext(block).setNext(armor).setNext(hp)
-        long dodgeSeed = random.nextLong();
-        DefenseHandler dodge = new DodgeHandler(hero.getDodgeChance(), dodgeSeed);
-        DefenseHandler block = new BlockHandler(hero.getBlockRating() / 100.0);
-        DefenseHandler armor = new ArmorHandler(hero.getArmorValue());
-        DefenseHandler hp = new HpHandler();
-        dodge.setNext(block).setNext(armor).setNext(hp);
-
 
         // TODO: Create an ActionQueue (the invoker).
 
@@ -88,6 +81,13 @@ public class TournamentEngine {
             actionQueue.executeAll();
 
             if (opponent.isAlive()) {
+                long dodgeSeed = random.nextLong();
+                DefenseHandler dodge = new DodgeHandler(hero.getDodgeChance(), dodgeSeed);
+                DefenseHandler block = new BlockHandler(hero.getBlockRating() / 100.0);
+                DefenseHandler armor = new ArmorHandler(hero.getArmorValue());
+                DefenseHandler hp = new HpHandler();
+                dodge.setNext(block).setNext(armor).setNext(hp);
+
                 System.out.println("[Round " + round + "] " + opponent.getName() + " attacks for "
                         + opponent.getAttackPower() + " damage!");
                 dodge.handle(opponent.getAttackPower(), hero);
